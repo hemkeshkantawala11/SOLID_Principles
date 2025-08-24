@@ -3,6 +3,7 @@ public class standard extends Shipment{
         super(w);
     }
 
+    @Override
     double getCost() {
         return 50 + 5*this.getWeightKg();
     }

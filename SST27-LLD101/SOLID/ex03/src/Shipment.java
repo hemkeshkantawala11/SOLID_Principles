@@ -6,5 +6,6 @@ public abstract class Shipment {
     double getWeightKg(){
         return weightKg;
     }
+    
     abstract double getCost();
 }
