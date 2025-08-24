@@ -1,12 +1,10 @@
 public class Rectangle {
     protected int w,h;
-    void setWidth(int w){ 
-        this.w = w; 
+    public Rectangle(int w, int h){
+        this.w = w;
+        this.h = h;
     }
-    void setHeight(int h){ 
-        this.h = h; 
-    }
-    int area(){ 
+    public int area(){ 
         return w*h; 
     }
 }
