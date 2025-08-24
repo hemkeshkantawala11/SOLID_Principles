@@ -1,6 +1,10 @@
-class Aviary {
+public class Aviary {
     public void release(Bird b){ 
-        b.fly(); 
-        System.out.println("Released"); 
+        if(b instanceof Flyable){
+            ((Flyable) b).fly();
+        } 
+        else{
+            System.out.println("Can't release");
+        }
     }
 }
