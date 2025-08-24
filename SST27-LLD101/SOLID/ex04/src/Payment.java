@@ -1,8 +1,9 @@
-public class Payment {
-    String provider; 
+public abstract class Payment {
     double amount;
-    Payment(String p, double a){ 
-        provider=p; 
+    public Payment(double a){ 
         amount=a; 
     }
+
+    public abstract void processPayment();
+
 }
