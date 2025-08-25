@@ -1,6 +1,7 @@
 
 public class Demo04 {
     public static void main(String[] args) {
+        
         Payment p1 = new Card(100.0);
         p1.processPayment();
 
