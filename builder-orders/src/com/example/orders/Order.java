@@ -14,14 +14,47 @@ public class Order {
     private boolean expedited;
     private String notes;
 
-    public Order(String id, String customerEmail) {
-        this.id = id;
-        this.customerEmail = customerEmail;
+    private Order(Builder builder) {
+        this.id = builder.id;
+        this.customerEmail = builder.customerEmail;
+        this.discountPercent = builder.discountPercent;
+        this.expedited = builder.expedited;
+        this.notes = builder.notes;
+        // lines are added after build using addLine()
     }
 
-    public Order(String id, String customerEmail, Integer discountPercent) {
-        this(id, customerEmail);
-        this.discountPercent = discountPercent;
+    public static class Builder {
+    private String id;
+    private String customerEmail;
+    private Integer discountPercent;
+    private boolean expedited;
+    private String notes;
+
+        public Builder(String id, String customerEmail) {
+            this.id = id;
+            this.customerEmail = customerEmail;
+        }
+
+    
+
+        public Builder discountPercent(Integer discountPercent) {
+            this.discountPercent = discountPercent;
+            return this;
+        }
+
+        public Builder expedited(boolean expedited) {
+            this.expedited = expedited;
+            return this;
+        }
+
+        public Builder notes(String notes) {
+            this.notes = notes;
+            return this;
+        }
+
+        public Order build() {
+           return new Order(this);
+        }
     }
 
     public void addLine(OrderLine line) { lines.add(line); }
@@ -31,7 +64,13 @@ public class Order {
 
     public String getId() { return id; }
     public String getCustomerEmail() { return customerEmail; }
-    public List<OrderLine> getLines() { return lines; } // leaks internal list
+    public List<OrderLine> getLines() {
+        List<OrderLine> copy = new ArrayList<>();
+        for (OrderLine l : lines) {
+            copy.add(l);
+        }
+        return copy;
+    }
     public Integer getDiscountPercent() { return discountPercent; }
     public boolean isExpedited() { return expedited; }
     public String getNotes() { return notes; }
