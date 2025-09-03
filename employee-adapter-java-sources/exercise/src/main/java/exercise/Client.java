@@ -1,6 +1,8 @@
 package exercise;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Client {
   public static void main(String[] args) {
@@ -23,6 +25,17 @@ public class Client {
     // TODO: Wrap each legacy object with the right adapter and collect into one list
     List<Employee> all = new ArrayList<>();
 
+    for(EmployeeCSV e : csvRows){
+      all.add(EmployeeAdapterFactory.getEmployee(e));
+    }
+
+    for(EmployeeDB e : dbRows){
+      all.add(EmployeeAdapterFactory.getEmployee(e));
+    }
+
+    for(EmployeeLDAP e : ldapRows){
+      all.add(EmployeeAdapterFactory.getEmployee(e));
+    }
 
     EmployeePrinter.print(all);
   }
