@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 public class GlyphStyleFactory {
-    private Map<String, GlyphStyle> styles = new HashMap<>();
+    private final Map<String, GlyphStyle> styles = new HashMap<>();
 
     public GlyphStyle getStyle(String key) {
         if (!styles.containsKey(key)) {
